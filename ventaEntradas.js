@@ -41,22 +41,32 @@ function pintarButacas(){
     contenedor.innerHTML="<br>";
     contenedor.innerHTML+="<h3>PATIO DE BUTACAS</h3>"
     for (i=1;i<=numButacas;i++){
-            if (vendidas.includes(i)){
-                contenedor.innerHTML+="<button id='butaca"+i+"' class='ocupado'>"+i+"</button> ";
-            }
-            else{
-                contenedor.innerHTML+="<button id='butaca"+i+"' class='libre' onclick='seleccionar();' title='Seleccionar asiento'>"+i+"</button> ";
-            }
-            if (i%15==0){
-                contenedor.innerHTML+="<br>";
-            }
-        }
-        if (numButacas==vendidas.length){
-            contenedor.innerHTML+="<br><img  src='img/soldout.png' alt='Sin localidades'title='Localidades agotadas. Seleccione otra película.'>"
+        if (vendidas.includes(i)){
+            contenedor.innerHTML+="<button id='butaca"+i+"' class='ocupado'>"+i+"</button> ";
         }
         else{
-            contenedor.innerHTML+="<br><br><button id='btnConfirm' onclick='confirmarVenta();' title='Comprar entradas'>Comprar</button>"
+            contenedor.innerHTML+="<button id='butaca"+i+"' class='libre' onclick='seleccionar();' title='Seleccionar asiento'>"+i+"</button> ";
         }
+        if (i%15==0){
+            contenedor.innerHTML+="<br>";
+        }
+    }
+
+    // Verificamos si la sala está llena
+    if (numButacas==vendidas.length){
+        contenedor.innerHTML+="<br><img src='img/soldout.png' alt='Sin localidades' title='Localidades agotadas. Seleccione otra película.'>"
+    }
+    else{
+        contenedor.innerHTML+="<br><br><button id='btnConfirm' onclick='confirmarVenta();' title='Comprar entradas'>Comprar</button>"
+    }
+
+    // Cálculo de ocupación
+    let ocupacion = (vendidas.length / numButacas) * 100;
+
+    // Si supera el 50% mostramos advertencia
+    if (ocupacion > 50){
+        contenedor.innerHTML += "<br><br><p style='color:red; font-weight:bold;'>⚠ WARNING: La sala tiene más del 50% de ocupación. ¡Apresúrate a reservar!</p>";
+    }
 }
 
 /*Cuando se selecciona una localidad se comprueba si esta libre y se guarda o se borra
@@ -121,4 +131,3 @@ function imprimirTicket(){
     var miEntrada=window.open("ticket.html",'Ticket',params)
     
 }
-    
