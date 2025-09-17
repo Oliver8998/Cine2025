@@ -12,7 +12,7 @@ var numButacas=0;   //butacas disponibles en la sala seleccionada
 var sala=0; //guardamos la sala seleccionada
 var butacaSel=0 //numero de butacas que se han elegido para comprar 
 var peli="";    //Titulo de la pelicula seleccionada
-const precio=3;
+const precio=5;
 
 /*Al seleccionar la pelicula recuperamos la localidades ya vendidas en esa sala
 asi como el numero de localidades de la sala */
